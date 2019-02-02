@@ -75,7 +75,7 @@ function appendTask(task) {
 function storeTaskInLocalStorage(task) {
   const tasks = getTasksFromLocalStorage();
   tasks.push(task);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  updateTasksInLocalStorage(tasks);
 }
 
 function loadTasks() {
@@ -92,7 +92,7 @@ function removeTaskFromLocalStorage(li) {
       tasks.splice(index, 1);
     }
   });
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  updateTasksInLocalStorage(tasks);
 }
 
 function clearTasksFromLocalStorage() {
@@ -102,4 +102,8 @@ function clearTasksFromLocalStorage() {
 function getTasksFromLocalStorage() {
   return localStorage.getItem('tasks') === null ? [] :
     JSON.parse(localStorage.getItem('tasks'))
+}
+
+function updateTasksInLocalStorage(tasks) {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
