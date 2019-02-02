@@ -73,23 +73,20 @@ function appendTask(task) {
 }
 
 function storeTaskInLocalStorage(task) {
-  let tasks = localStorage.getItem('tasks') === null ? [] :
-    JSON.parse(localStorage.getItem('tasks'));
+  const tasks = getTasksFromLocalStorage();
   tasks.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function loadTasks() {
-  let tasks = localStorage.getItem('tasks') === null ? [] :
-    JSON.parse(localStorage.getItem('tasks'));
+  const tasks = getTasksFromLocalStorage();
   tasks.forEach(function (task) {
     appendTask(task);
   })
 }
 
 function removeTaskFromLocalStorage(li) {
-  let tasks = localStorage.getItem('tasks') === null ? [] :
-    JSON.parse(localStorage.getItem('tasks'));
+  const tasks = getTasksFromLocalStorage();
   tasks.forEach(function (task, index) {
     if (li.textContent === task) {
       tasks.splice(index, 1);
@@ -100,4 +97,9 @@ function removeTaskFromLocalStorage(li) {
 
 function clearTasksFromLocalStorage() {
   localStorage.removeItem('tasks');
+}
+
+function getTasksFromLocalStorage() {
+  return localStorage.getItem('tasks') === null ? [] :
+    JSON.parse(localStorage.getItem('tasks'))
 }
