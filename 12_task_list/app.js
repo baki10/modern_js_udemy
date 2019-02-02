@@ -22,7 +22,7 @@ function addTask(event) {
     alert('Add a task');
     return;
   }
-  appendTask(taskInput.value);
+  appendTaskToTaskList(taskInput.value);
   storeTaskInLocalStorage(taskInput.value);
   taskInput.value = '';
 
@@ -61,7 +61,7 @@ function filterTasks(event) {
   });
 }
 
-function appendTask(task) {
+function appendTaskToTaskList(task) {
   const li = document.createElement('li');
   li.className = 'collection-item';
   li.appendChild(document.createTextNode(task));
@@ -81,7 +81,7 @@ function storeTaskInLocalStorage(task) {
 function loadTasks() {
   const tasks = getTasksFromLocalStorage();
   tasks.forEach(function (task) {
-    appendTask(task);
+    appendTaskToTaskList(task);
   })
 }
 
